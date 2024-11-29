@@ -14,6 +14,5 @@ export class Cliente extends Pessoa{
     }
 
     listarEnderecos():void{
-
     }
 }
