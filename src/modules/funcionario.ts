@@ -9,6 +9,6 @@ export class Funcionario extends Pessoa implements IUsuario{
      }
      //chmando o metodo da interface IUsuario
      autenticar(): boolean {
-         return false;
+         return true;
      }
 }
