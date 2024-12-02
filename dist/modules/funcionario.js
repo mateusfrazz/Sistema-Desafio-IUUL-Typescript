@@ -10,7 +10,7 @@ class Funcionario extends pessoa_1.Pessoa {
     }
     //chmando o metodo da interface IUsuario
     autenticar() {
-        return false;
+        return true;
     }
 }
 exports.Funcionario = Funcionario;

@@ -1,7 +1,13 @@
 export class Credito{
+    public valor:number
+    public  data: Date
     constructor(
-        protected valor:number,
-        protected data: Date,
+         valor:number,
+         data: Date,
     ){
+        this.data = new Date();
+        this.valor = valor;
     }
+
+
 }

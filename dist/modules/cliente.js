@@ -11,13 +11,18 @@ class Cliente extends pessoa_1.Pessoa {
         super(cpf, nome, telefone);
         this.vip = vip;
     }
-    listarEnderecos(endereco) {
-        if (!endereco === null) {
-            console.log(`Esses são os endereços do cliente ${this.nome}`);
-        }
-        else {
-            console.log(`O Cliente ${this.nome} ainda não cadastrou nenhum endereço`);
-        }
+    //metodo para listar os endereços do usuario
+    listarEnderecos() {
+        //pra cada item dentro da minha lista de endereços, ele percorre todos os itens
+        this.listaEnderecos.forEach((endereco) => {
+            console.log("--------------------------------------");
+            console.log(`Este é o cep ${endereco.cep}`);
+            console.log(`Este é o logradouro ${endereco.logradouro}`);
+            console.log(`Este é o numero ${endereco.numero}`);
+            console.log(`Este é o complemento ${endereco.complemento}`);
+            console.log(`Está é a cidade ${endereco.cidade}`);
+            console.log(`Este é a UF ${endereco.uf}`);
+        });
     }
 }
 exports.Cliente = Cliente;

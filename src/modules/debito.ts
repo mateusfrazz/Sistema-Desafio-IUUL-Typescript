@@ -1,7 +1,7 @@
 export class Debito{
     constructor(
-        protected valor:number,
-        protected data: Date,
+        public valor:number,
+        public data: Date,
     ){
 
     }

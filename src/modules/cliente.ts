@@ -29,5 +29,7 @@ export class Cliente extends Pessoa{
          console.log(`Este é a UF ${endereco.uf}`)
        })
     }
+
+    
 }
 
