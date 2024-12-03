@@ -1,8 +1,5 @@
 export class Cargo{
-   protected nome:string;
-
-   constructor(nome:string){
-    this.nome = nome;
+   constructor(protected nome: string){
    }
 }
 

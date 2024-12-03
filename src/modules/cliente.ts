@@ -17,7 +17,7 @@ export class Cliente extends Pessoa{
     }
 
     //metodo para listar os endereços do usuario
-    listarEnderecos():void{
+    protected listarEnderecos():void{
         //pra cada item dentro da minha lista de endereços, ele percorre todos os itens
        this.listaEnderecos.forEach((endereco:Enderecos)=>{
          console.log("--------------------------------------")

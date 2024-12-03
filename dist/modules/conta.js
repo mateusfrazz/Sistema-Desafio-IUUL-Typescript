@@ -24,15 +24,17 @@ class Conta {
         else {
             const novoCredito = new credito_1.Credito(valorDeposito, new Date()); // criando o parametro para armazenar o valor do deposito e a data atual
             this.creditoConta.push(novoCredito); //adicionando o credito ao array
-            console.log(`O valor de R$${valorDeposito} foi depositado com sucesso`);
-            console.log("---------------------------------");
             console.log(this.logDeposito());
         }
     }
     //criando o metodo sacar seguindo os parametros da classe debito
     sacar(valorSaque) {
+        const saldoAtual = this.calculoSaldo();
         if (valorSaque <= 0) {
             console.log(`O valor de Saque de R$${valorSaque} é um valor invalido, por favor informe um valor valido`);
+        }
+        else if (saldoAtual < valorSaque) {
+            console.log(`Saldo insuficiente, você tentou sacar R$${valorSaque}, mas seu saldo é de R$${saldoAtual}`);
         }
         else {
             const novoDebito = new debito_1.Debito(valorSaque, new Date());
@@ -41,6 +43,12 @@ class Conta {
             console.log("---------------------------------");
             console.log(this.logSaque());
         }
+    }
+    //metodo para realizar o calculo do saldo da conta 
+    calculoSaldo() {
+        const totalCreditos = this.creditoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
+        const totalDebitos = this.debitoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
+        return totalCreditos - totalDebitos;
     }
     //METODO PARA EXIBIR O LOG DE MOVIMENTAÇÃO DE DEPOSITO DO CLIENTE 
     logDeposito() {

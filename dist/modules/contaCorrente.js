@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContaCorrente = void 0;
 const conta_1 = require("./conta");
 class ContaCorrente extends conta_1.Conta {
-    limite;
-    constructor(numero, limite) {
-        super(numero);
+    limite = 0;
+    constructor(limite) {
+        super();
         this.limite = limite;
     }
-    calcularSaldo() {
-    }
-    transferir(Conta, contaDestino, valorTransferencia) {
+    transferir(contaDestino, valor) {
     }
 }
+exports.ContaCorrente = ContaCorrente;
