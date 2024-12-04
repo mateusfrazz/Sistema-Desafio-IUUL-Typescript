@@ -11,9 +11,11 @@ export class Cliente extends Pessoa{
         nome:string,
         telefone:string,
         vip:boolean,
+        enderecos: Enderecos[]
     ){
         super(cpf,nome,telefone);
         this.vip = vip;
+        this.listaEnderecos = enderecos;//armazena os endereços recebidos no array
     }
 
     //metodo para listar os endereços do usuario

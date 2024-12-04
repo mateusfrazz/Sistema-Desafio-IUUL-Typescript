@@ -3,11 +3,9 @@ import { Credito } from "./credito";
 import { Debito } from "./debito";
 
 export class ContaCorrente extends Conta{
-     protected clientetest : string
      protected limite : number = 0
-     constructor( clientetest : string){
+     constructor(){
           super()
-          this.clientetest = clientetest;
      }
       
      // criando o metodo para realizar a transferencia entre contas
