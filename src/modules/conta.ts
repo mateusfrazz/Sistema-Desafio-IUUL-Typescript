@@ -22,7 +22,7 @@ export abstract class Conta{
       if(valorDeposito <= 0){  //verificação para noa permitir que o cliente informe um valor  de Deposito negativo 
            console.log(`O valor de $${valorDeposito}Reais, não é valido,  Informe um valor de Deposito valido por gentileza`)
       } else{
-          const novoCredito = new Credito(valorDeposito, new Date())// criando o parametro para armazenar o valor do deposito e a data atual
+          const novoCredito = new Credito(valorDeposito, new Date())// cri_ando o parametro para armazenar o valor do deposito e a data atual
           this.creditoConta.push(novoCredito);//adicionando o credito ao array
           console.log(this.logDeposito())
       }

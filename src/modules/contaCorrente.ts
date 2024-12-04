@@ -33,9 +33,3 @@ export class ContaCorrente extends Conta{
 }
 
 
-const conta1 = new ContaCorrente ("Mateus")
-
-const conta2 = new ContaCorrente ("Lucas")
-
-conta1.transferir(conta2, 200);
-
