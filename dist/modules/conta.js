@@ -58,6 +58,7 @@ class Conta {
         const totalCreditos = this.creditoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
         const totalDebitos = this.debitoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
         const SaldoAtual = totalCreditos - totalDebitos;
+        console.log("--------------------------------------------");
         console.log(`O saldo atual da sua conta é ${SaldoAtual}`);
     }
     //METODO PARA EXIBIR O LOG DE MOVIMENTAÇÃO DE DEPOSITO DO CLIENTE 
