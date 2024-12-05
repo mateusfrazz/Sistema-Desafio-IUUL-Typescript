@@ -7,9 +7,12 @@ class Cliente extends pessoa_1.Pessoa {
     vip;
     //passando a classe Enderecos e atribuindo a um array
     listaEnderecos = [];
-    constructor(cpf, nome, telefone, vip) {
+    //criando o parametro para informar que ele pode receber a conta corrente ou conta poupança
+    conta;
+    constructor(cpf, nome, telefone, vip, enderecos) {
         super(cpf, nome, telefone);
         this.vip = vip;
+        this.listaEnderecos = enderecos; //armazena os endereços recebidos no array
     }
     //metodo para listar os endereços do usuario
     listarEnderecos() {
@@ -23,6 +26,14 @@ class Cliente extends pessoa_1.Pessoa {
             console.log(`Está é a cidade ${endereco.cidade}`);
             console.log(`Este é a UF ${endereco.uf}`);
         });
+    }
+    //metodo para associar uma conta ao cliente
+    associarConta(conta) {
+        this.conta = conta;
+        console.log(` Conta numero ${this.conta.obterNumeroConta()} associada com sucesso ao ciente ${this.nome}`);
+    }
+    getConta() {
+        return this.conta;
     }
 }
 exports.Cliente = Cliente;

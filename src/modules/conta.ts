@@ -16,7 +16,10 @@ export abstract class Conta{
     private gerarNumeroConta():number{
        return Math.floor(Math.random()*10000)+1;// definindo o retorno para gerar o numero da conta
     }
-
+     
+    public obterNumeroConta():number{
+         return this.numeroConta
+    }
     //criando o metodo de deposito 
     depositar(valorDeposito:number): void{
       if(valorDeposito <= 0){  //verificação para noa permitir que o cliente informe um valor  de Deposito negativo 
@@ -24,12 +27,12 @@ export abstract class Conta{
       } else{
           const novoCredito = new Credito(valorDeposito, new Date())// cri_ando o parametro para armazenar o valor do deposito e a data atual
           this.creditoConta.push(novoCredito);//adicionando o credito ao array
-          console.log(this.logDeposito())
+          this.logDeposito()
       }
     }
 
     //criando o metodo sacar seguindo os parametros da classe debito
-     protected sacar(valorSaque:number):void{
+      sacar(valorSaque:number):void{
       const saldoAtual = this.calculoSaldo();
       if(valorSaque <= 0){
           console.log(`O valor de Saque de R$${valorSaque} é um valor invalido, por favor informe um valor valido`)
@@ -41,35 +44,44 @@ export abstract class Conta{
          this.debitoConta.push(novoDebito);
          console.log(`O valor de R$${valorSaque} foi sacado com sucesso`)
          console.log("---------------------------------")
-         console.log(this.logSaque())
+         this.logSaque()
       }
     }
 
     //metodo para realizar o calculo do saldo da conta 
     calculoSaldo(): number {
       const totalCreditos = this.creditoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
-      const totalDebitos = this.debitoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
+      const totalDebitos = this.debitoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);   
       return totalCreditos - totalDebitos;
+  }
+  //metodo para exibir o saldo atual da conta 
+  exibirSaldoAtual():void{
+    const totalCreditos = this.creditoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
+    const totalDebitos = this.debitoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
+    const SaldoAtual = totalCreditos - totalDebitos;
+    console.log(`O saldo atual da sua conta é ${SaldoAtual}`)
   }
 
     //METODO PARA EXIBIR O LOG DE MOVIMENTAÇÃO DE DEPOSITO DO CLIENTE 
-     private logDeposito():void{
-        this.creditoConta.forEach((transacaoDeposito:Credito)=>{
-           console.log("------------------------")
-           console.log("RECIBO DE TRANSAÇÃO")
-           console.log(`Valor do Deposito R$${transacaoDeposito.valor}`)
-           console.log(`Horario do Deposito ${transacaoDeposito.data.toLocaleString("pt-BR")}`)
-        })
-    }
+    private logDeposito(): void {
+      const ultimoDeposito = this.creditoConta[this.creditoConta.length - 1]; // Obtém o último item do array
+      if (ultimoDeposito) {
+          console.log("------------------------");
+          console.log("RECIBO DE TRANSAÇÃO");
+          console.log(`Valor do Depósito: R$${ultimoDeposito.valor}`);
+          console.log(`Horário do Depósito: ${ultimoDeposito.data.toLocaleString("pt-BR")}`);
+      }
+  }
 
     //METODO PARA EXIBIR O LOG DE MOVIMENTAÇÃO DE SAQUE DO CLIENTE
-    private logSaque():void{
-         this.debitoConta.forEach((transacaoSaque: Debito)=>{
+    private logSaque(): void{
+        const ultimoSaque = this.debitoConta[this.debitoConta.length -1];
+         if(ultimoSaque){
              console.log("----------------------")
              console.log("RECIBO DE TRANSAÇÃO")
-             console.log(`Valor do Saque R$${transacaoSaque.valor}`)
-             console.log(`Horario do Saque ${transacaoSaque.data.toLocaleString("pt-BR")}`) // formatar a data e hora para os padroes pt-br
-            })
+             console.log(`Valor do Saque R$${ultimoSaque.valor}`)
+             console.log(`Horario do Saque ${ultimoSaque.data.toLocaleString("pt-BR")}`) // formatar a data e hora para os padroes pt-br
+            }
     }
   }
 

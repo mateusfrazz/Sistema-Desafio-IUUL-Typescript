@@ -5,8 +5,8 @@ class Credito {
     valor;
     data;
     constructor(valor, data) {
-        this.data = new Date();
         this.valor = valor;
+        this.data = data;
     }
 }
 exports.Credito = Credito;

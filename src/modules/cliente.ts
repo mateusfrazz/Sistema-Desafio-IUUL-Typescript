@@ -2,15 +2,20 @@
 import { Pessoa } from "./pessoa";
 //importando os endereçoes do cliente
 import { Enderecos } from "./endereco";
+//importando a classe conta corrente
+import { ContaCorrente } from "./contaCorrente";
+import { ContaPoupanca } from "./contaPoupanca";
 export class Cliente extends Pessoa{
     protected vip: boolean
     //passando a classe Enderecos e atribuindo a um array
     protected listaEnderecos: Enderecos[] = [];
+     //criando o parametro para informar que ele pode receber a conta corrente ou conta poupança
+    protected conta?: ContaCorrente | ContaPoupanca;
     constructor(
         cpf:string,
         nome:string,
         telefone:string,
-        vip:boolean,
+        vip:boolean, 
         enderecos: Enderecos[]
     ){
         super(cpf,nome,telefone);
@@ -30,6 +35,16 @@ export class Cliente extends Pessoa{
          console.log(`Está é a cidade ${endereco.cidade}`)
          console.log(`Este é a UF ${endereco.uf}`)
        })
+    }
+
+    //metodo para associar uma conta ao cliente
+    public associarConta(conta: ContaCorrente | ContaPoupanca):void{
+        this.conta = conta;
+        console.log(` Conta numero ${this.conta.obterNumeroConta()} associada com sucesso ao ciente ${this.nome}`)
+    }
+
+    public getConta(): ContaCorrente | ContaPoupanca | undefined{
+        return this.conta
     }
 
     

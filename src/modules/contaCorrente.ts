@@ -4,8 +4,9 @@ import { Debito } from "./debito";
 
 export class ContaCorrente extends Conta{
      protected limite : number = 0
-     constructor(){
-          super()
+     constructor(limite:number){
+          super();
+          this.limite = limite;
      }
       
      // criando o metodo para realizar a transferencia entre contas
