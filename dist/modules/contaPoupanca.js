@@ -4,9 +4,8 @@ exports.ContaPoupanca = void 0;
 const conta_1 = require("./conta");
 class ContaPoupanca extends conta_1.Conta {
     taxaRendimento = 0.005;
-    limite = 0;
     constructor(limite) {
-        super();
+        super(limite);
         this.limite = limite;
     }
     calculoSaldo() {

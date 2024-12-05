@@ -1,14 +1,17 @@
 import { Credito } from "./credito";
 import { Debito } from "./debito";
+import { ContaCorrente } from "./contaCorrente";
+import { ContaPoupanca } from "./contaPoupanca";
 
 export abstract class Conta{
     protected numeroConta:number;
+    protected limite : number = 0
     //definindo um array para armazenar os creditos
     protected creditoConta : Credito[] = []
-
     //definindo um array para armazenar os Debitos
     protected debitoConta : Debito[] = []
-    constructor(){
+    constructor(limite:number){
+    this.limite = limite;
     this.numeroConta = this.gerarNumeroConta();
     }
 
@@ -24,7 +27,8 @@ export abstract class Conta{
     depositar(valorDeposito:number): void{
       if(valorDeposito <= 0){  //verificação para noa permitir que o cliente informe um valor  de Deposito negativo 
            console.log(`O valor de $${valorDeposito}Reais, não é valido,  Informe um valor de Deposito valido por gentileza`)
-      } else{
+      }
+      else{
           const novoCredito = new Credito(valorDeposito, new Date())// cri_ando o parametro para armazenar o valor do deposito e a data atual
           this.creditoConta.push(novoCredito);//adicionando o credito ao array
           this.logDeposito()
@@ -39,7 +43,7 @@ export abstract class Conta{
       }else if(saldoAtual < valorSaque){
           console.log(`Saldo insuficiente, você tentou sacar R$${valorSaque}, mas seu saldo é de R$${saldoAtual}`)
       }
-       else{
+      else{
          const novoDebito = new Debito(valorSaque, new Date());
          this.debitoConta.push(novoDebito);
          console.log(`O valor de R$${valorSaque} foi sacado com sucesso`)
@@ -59,6 +63,7 @@ export abstract class Conta{
     const totalCreditos = this.creditoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
     const totalDebitos = this.debitoConta.reduce((acumulador, transacao) => acumulador + transacao.valor, 0);
     const SaldoAtual = totalCreditos - totalDebitos;
+    console.log("--------------------------------------------")
     console.log(`O saldo atual da sua conta é ${SaldoAtual}`)
   }
 
@@ -83,6 +88,20 @@ export abstract class Conta{
              console.log(`Horario do Saque ${ultimoSaque.data.toLocaleString("pt-BR")}`) // formatar a data e hora para os padroes pt-br
             }
     }
+    //metodo para adicionar limite
+    adicionarLimite(limiteConta: number): void{
+      this.limite += limiteConta;
+      console.log(`O limite de ${limiteConta} foi adicionado com sucesso`)
+  }
+
+  alterarLimite(valorAlterado: number): void{
+     this.limite = valorAlterado;
+     console.log(`O limite foi alterado, novo limite total da conta é de R$${this.limite}`)
+  }
+
+   protected SaldoLimite():number{
+     return this.limite
+  }
   }
 
 

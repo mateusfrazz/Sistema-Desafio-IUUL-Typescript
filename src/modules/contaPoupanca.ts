@@ -2,8 +2,9 @@ import { Conta } from "./conta";
 
 export class ContaPoupanca extends Conta{
     private taxaRendimento : number = 0.005;
-    constructor(){
-         super();
+    constructor(limite : number){
+         super(limite);
+         this.limite = limite;
     }
       calculoSaldo(): number {
           const saldoBase = super.calculoSaldo()//chamando o metodo calcularSaldo da classe base

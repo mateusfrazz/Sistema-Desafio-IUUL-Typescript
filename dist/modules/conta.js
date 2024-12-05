@@ -5,11 +5,13 @@ const credito_1 = require("./credito");
 const debito_1 = require("./debito");
 class Conta {
     numeroConta;
+    limite = 0;
     //definindo um array para armazenar os creditos
     creditoConta = [];
     //definindo um array para armazenar os Debitos
     debitoConta = [];
-    constructor() {
+    constructor(limite) {
+        this.limite = limite;
         this.numeroConta = this.gerarNumeroConta();
     }
     //criando o metodo para gerar o numero de conta do cliente de forma aleatoria ao ser instanciada uma classe filho
@@ -80,6 +82,18 @@ class Conta {
             console.log(`Valor do Saque R$${ultimoSaque.valor}`);
             console.log(`Horario do Saque ${ultimoSaque.data.toLocaleString("pt-BR")}`); // formatar a data e hora para os padroes pt-br
         }
+    }
+    //metodo para adicionar limite
+    adicionarLimite(limiteConta) {
+        this.limite += limiteConta;
+        console.log(`O limite de ${limiteConta} foi adicionado com sucesso`);
+    }
+    alterarLimite(valorAlterado) {
+        this.limite = valorAlterado;
+        console.log(`O limite foi alterado, novo limite total da conta é de R$${this.limite}`);
+    }
+    SaldoLimite() {
+        return this.limite;
     }
 }
 exports.Conta = Conta;
